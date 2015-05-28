@@ -1,0 +1,32 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: test-kitchen
+  security_group_ids: ["sg-aaaaaaaa"]
+  region: ap-southeast-2
+  subnet_id: subnet-bbbbbbbb
+  instance_type: t2.micro
+  user_data: ec2-user-data.ps1.base64
+ 
+transport:
+  name: winrm
+  connection_timeout: 10
+  connection_retries: 600
+  connection_retry_sleep: 10
+  max_wait_until_ready: 1200
+  username: kitchen
+  password: K1tch3nR0ck5
+ 
+platforms:
+  - name: windows2012r2
+    driver:
+      image_id: ami-a9077a93 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.04.15
+ 
+provisioner:
+  name: chef_solo
+ 
+suites:
+  - name: default
+    run_list:
+      - recipe[chocolatey::default]
+
