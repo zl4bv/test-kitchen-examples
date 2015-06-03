@@ -2,11 +2,13 @@
 driver:
   name: ec2
   aws_ssh_key_id: test-kitchen
-  security_group_ids: ["sg-aaaaaaaa"]
+  security_group_ids: ["<%= ENV['AWS_SECURITY_GROUP_ID'] %>"]
   region: ap-southeast-2
-  subnet_id: subnet-bbbbbbbb
+  subnet_id: "<%= ENV['AWS_SUBNET_ID'] %>"
   instance_type: t2.micro
   user_data: ec2-user-data.ps1
+  retryable_tries: 300
+  get_windows_password: true
  
 transport:
   name: winrm
@@ -14,8 +16,7 @@ transport:
   connection_retries: 600
   connection_retry_sleep: 10
   max_wait_until_ready: 1200
-  username: kitchen
-  password: K1tch3nR0ck5
+  ssh_key: test-kitchen.pem
  
 platforms:
   - name: windows2012r2
