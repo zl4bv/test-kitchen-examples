@@ -8,7 +8,6 @@ driver:
   instance_type: t2.micro
   user_data: ec2-user-data.ps1
   retryable_tries: 300
-  get_windows_password: true
  
 transport:
   name: winrm
