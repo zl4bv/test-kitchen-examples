@@ -3,24 +3,18 @@ driver:
   name: ec2
   aws_ssh_key_id: test-kitchen
   security_group_ids: ["<%= ENV['AWS_SECURITY_GROUP_ID'] %>"]
-  region: ap-southeast-2
+  region: "<%= ENV['AWS_REGION'] %>"
   subnet_id: "<%= ENV['AWS_SUBNET_ID'] %>"
   instance_type: t2.micro
-  user_data: ec2-user-data.ps1
-  retryable_tries: 300
  
 transport:
   name: winrm
-  connection_timeout: 10
-  connection_retries: 600
-  connection_retry_sleep: 10
-  max_wait_until_ready: 1200
   ssh_key: test-kitchen.pem
  
 platforms:
   - name: windows2012r2
     driver:
-      image_id: ami-a9077a93 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.04.15
+      image_id: ami-6be19e51 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.05.13
  
 provisioner:
   name: chef_solo
