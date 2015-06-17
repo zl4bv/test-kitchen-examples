@@ -5,3 +5,5 @@ ruby/
 
 Berksfile.lock
 Gemfile.lock
+
+*.pem

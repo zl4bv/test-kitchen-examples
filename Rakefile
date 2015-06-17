@@ -1,4 +1,7 @@
+require 'erb'
 require 'kitchen/rake_tasks'
+
+ssh_key_data = ERB.new(File.read('test-kitchen.pem.erb')).result
 
 kitchen_tasks = []
 namespace :examples do
@@ -6,8 +9,9 @@ namespace :examples do
     split = dir.gsub(/-/, '_').split('/')
     namespace split[1].to_sym  do
       namespace split[2].to_sym do
-        kitchen_tasks << "examples:#{split[1]}:#{split[2]}:kitchen:all".to_sym
         Dir.chdir(dir) { Kitchen::RakeTasks.new }
+        kitchen_tasks << "examples:#{split[1]}:#{split[2]}:kitchen:all".to_sym
+        File.open(File.join(dir, 'test-kitchen.pem'), 'w') { |file| file.write(ssh_key_data) }
       end
     end
   end
