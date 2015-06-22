@@ -2,6 +2,7 @@ require 'erb'
 require 'kitchen/rake_tasks'
 
 ssh_key_data = ERB.new(File.read('test-kitchen.pem.erb')).result
+File.open('test-kitchen.pem', 'w') { |file| file.write(ssh_key_data) }
 
 kitchen_tasks = []
 namespace :examples do
