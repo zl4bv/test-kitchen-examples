@@ -1,7 +1,7 @@
 # test-kitchen-examples [![Build Status](https://secure.travis-ci.org/zl4bv/test-kitchen-examples.svg?branch=master)](http://travis-ci.org/zl4bv/test-kitchen-examples)
 Example configurations for Test Kitchen
 
-# Usage
+## Usage
 
 Each directory under `examples/` is a complete working example of a Test-Kitchen
 configuration. Each example demonstrates a particular aspect of Test-Kitchen.
@@ -11,7 +11,7 @@ aware that these examples will not fit all use cases and therefore some
 modification may be required. The author(s) of this repo are not responsible
 for the misuse of these examples.
 
-# Configuring for CI
+## Configuring for CI
 
 The following must be installed:
 * git (if you are cloning this repository)
