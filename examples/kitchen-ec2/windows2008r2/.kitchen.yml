@@ -1,0 +1,26 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: test-kitchen
+  security_group_ids: ["<%= ENV['AWS_SECURITY_GROUP_ID'] %>"]
+  region: "<%= ENV['AWS_REGION'] %>"
+  subnet_id: "<%= ENV['AWS_SUBNET_ID'] %>"
+  instance_type: t2.micro
+ 
+transport:
+  name: winrm
+  ssh_key: test-kitchen.pem
+ 
+platforms:
+  - name: windows2012r2
+    driver:
+      image_id: ami-3168130b # Windows_Server-2008-R2_SP1-English-64Bit-Base-2015.06.10
+ 
+provisioner:
+  name: chef_solo
+ 
+suites:
+  - name: default
+    run_list:
+      - recipe[chocolatey::default]
+
