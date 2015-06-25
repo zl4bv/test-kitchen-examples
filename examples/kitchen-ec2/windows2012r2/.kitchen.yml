@@ -8,16 +8,12 @@ driver:
   instance_type: t2.micro
  
 transport:
-  name: winrm
   ssh_key: test-kitchen.pem
  
 platforms:
   - name: windows2012r2
     driver:
       image_id: ami-6be19e51 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.05.13
- 
-provisioner:
-  name: chef_solo
  
 suites:
   - name: default
