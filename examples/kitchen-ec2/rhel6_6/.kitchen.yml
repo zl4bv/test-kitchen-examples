@@ -1,0 +1,16 @@
+---
+driver:
+  name: ec2
+  aws_ssh_key_id: test-kitchen
+  security_group_ids: ["<%= ENV['AWS_SECURITY_GROUP_ID'] %>"]
+  region: "<%= ENV['AWS_REGION'] %>"
+  subnet_id: "<%= ENV['AWS_SUBNET_ID'] %>"
+  instance_type: t2.micro
+
+platforms:
+  - name: rhel6.6
+    driver:
+      image_id: ami-a788f09d
+
+suites:
+  - name: default
