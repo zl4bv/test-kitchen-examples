@@ -11,9 +11,9 @@ transport:
   ssh_key: test-kitchen.pem
  
 platforms:
-  - name: windows2012r2
+  - name: windows2008r2
     driver:
-      image_id: ami-3168130b # Windows_Server-2008-R2_SP1-English-64Bit-Base-2015.06.10
+      image_id: ami-4fcd8a75 # Windows_Server-2008-R2_SP1-English-64Bit-Base-2015.07.15
  
 provisioner:
   name: chef_solo

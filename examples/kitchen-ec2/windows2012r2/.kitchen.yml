@@ -13,7 +13,7 @@ transport:
 platforms:
   - name: windows2012r2
     driver:
-      image_id: ami-6be19e51 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.05.13
+      image_id: ami-2d2d6b17 # Windows_Server-2012-R2_RTM-English-64Bit-Base-2015.07.15
  
 suites:
   - name: default
