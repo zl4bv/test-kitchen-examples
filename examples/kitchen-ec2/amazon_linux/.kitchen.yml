@@ -7,6 +7,9 @@ driver:
   subnet_id: "<%= ENV['AWS_SUBNET_ID'] %>"
   instance_type: t2.micro
 
+transport:
+  ssh_key: test-kitchen.pem
+
 platforms:
   - name: amazon_linux
     driver:
