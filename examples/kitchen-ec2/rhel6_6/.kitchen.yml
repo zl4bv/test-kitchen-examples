@@ -9,6 +9,7 @@ driver:
 
 transport:
   ssh_key: test-kitchen.pem
+  username: ec2-user
 
 platforms:
   - name: rhel6.6
