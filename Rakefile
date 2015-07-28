@@ -26,7 +26,7 @@ EXAMPLES.each do |example|
     end
 
     task example_instance => pem_file do
-      #instance.test(:always)
+      instance.test(:always)
     end
 
     task :examples => example_instance
