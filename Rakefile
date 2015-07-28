@@ -19,9 +19,16 @@ EXAMPLES.each do |example|
   )
   config.instances.each do |instance|
     example_instance = "#{example}/#{instance.name}"
-    task example_instance => 'test-kitchen.pem' do
-      instance.test(:always)
+    pem_file = File.join(example, 'test-kitchen.pem')
+
+    file pem_file => 'test-kitchen.pem' do |task|
+      cp(task.source, task.name)
     end
+
+    task example_instance => pem_file do
+      #instance.test(:always)
+    end
+
     task :examples => example_instance
   end
 end
