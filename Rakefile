@@ -1,24 +1,29 @@
 require 'erb'
-require 'kitchen/rake_tasks'
+require 'kitchen'
 
-ssh_key_data = ERB.new(File.read('test-kitchen.pem.erb')).result
-File.open('test-kitchen.pem', 'w') { |file| file.write(ssh_key_data) }
+Kitchen.logger = Kitchen.default_file_logger(nil, false)
 
-kitchen_tasks = []
-namespace :examples do
-  Dir.glob('examples/*/*/').each do |dir|
-    split = dir.gsub(/-/, '_').split('/')
-    namespace split[1].to_sym  do
-      namespace split[2].to_sym do
-        Dir.chdir(dir) { Kitchen::RakeTasks.new }
-        kitchen_tasks << "examples:#{split[1]}:#{split[2]}:kitchen:all".to_sym
-      end
+file 'test-kitchen.pem' => 'test-kitchen.pem.erb' do |task|
+  ssh_key_data = ERB.new(File.read(task.source)).result
+  File.open(task.name, 'w') { |file| file.write(ssh_key_data) }
+end
+
+EXAMPLES = FileList['examples/*/*']
+EXAMPLES.each do |example|
+  project_config = File.join(example, '.kitchen.yml')
+  config = Kitchen::Config.new(
+    loader: Kitchen::Loader::YAML.new(project_config: project_config),
+    kitchen_root: example,
+    log_level: :debug
+  )
+  config.instances.each do |instance|
+    example_instance = "#{example}/#{instance.name}"
+    task example_instance => 'test-kitchen.pem' do
+      instance.test(:always)
     end
+    task :examples => example_instance
   end
 end
 
-desc 'Runs all kitchen tests in all the example directories'
-task :kitchen_all => kitchen_tasks
-
-task default: :kitchen_all
+task default: :examples
 
