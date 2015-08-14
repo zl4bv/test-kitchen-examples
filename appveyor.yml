@@ -1,0 +1,42 @@
+version: "master-{build}"
+
+os: Windows Server 2012 R2
+platform:
+  - x64
+
+environment:
+  AWS_REGION:
+    secure: +Hnw/MrnfuqWi5/BL6ogbA==
+  AWS_SECURITY_GROUP_ID:
+    secure: iJwKoBvY7dlqAKMhyDXkoZqIuPbK87ZksSoVi+r9GIA=
+  AWS_SUBNET_ID:
+    secure: VU7i3E8WNG1kijK4eWC/cZz+cgqVGiGtr9r76l+t8q+p8Nhh/WB/TbikeT2k5nQ0
+  AWS_ACCESS_KEY_ID:
+    secure: 4nfQGC6ta9g6bM9HlyLkHw==
+  AWS_SECRET_ACCESS_KEY:
+    secure: eDJ3v7ncqjbNefNq65G0GQ==
+  SSH_KEY:
+    secure: MEzT8KN8uxvjvCPX4vKjkSFFgCLB3/tBB5F13zpHtyCFvTyOzvfGaYCaAsZT4EcqRGAF3QWzX9mtIaV8KMl8Eg+7ttviR6o/9yezzPjDHYQ=
+
+  matrix:
+    - ruby_version: "21-x64"
+
+skip_tags: true
+
+branches:
+  only:
+    - master
+
+install:
+  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - echo %PATH%
+  - ruby --version
+  - gem --version
+  - gem install bundler --quiet --no-ri --no-rdoc
+  - bundler --version
+
+build_script:
+  - bundle install
+
+test_script:
+  - bundle exec rake

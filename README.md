@@ -1,4 +1,4 @@
-# test-kitchen-examples [![Build Status](https://secure.travis-ci.org/zl4bv/test-kitchen-examples.svg?branch=master)](http://travis-ci.org/zl4bv/test-kitchen-examples)
+# test-kitchen-examples [![Travis Build Status](https://secure.travis-ci.org/zl4bv/test-kitchen-examples.svg?branch=master)](http://travis-ci.org/zl4bv/test-kitchen-examples) [![Appveyor Build Status](https://ci.appveyor.com/api/projects/status/cqx0bw5doflqmu3l?svg=true)](https://ci.appveyor.com/project/zl4bv/test-kitchen-examples)
 Example configurations for Test Kitchen
 
 ## Usage
@@ -37,4 +37,3 @@ bundle exec rake
 ## License
 
 [MIT License](/LICENSE)
-
