@@ -28,7 +28,7 @@ branches:
     - master
 
 install:
-  - SET PATH=C:\Ruby%ruby_version%\bin;%PATH%
+  - SET PATH=C:\MinGW\bin;C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
   - ruby --version
   - gem --version
