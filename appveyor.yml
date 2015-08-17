@@ -28,7 +28,10 @@ branches:
     - master
 
 install:
-  - SET PATH=C:\MinGW\bin;C:\Ruby%ruby_version%\bin;%PATH%
+  - ps: (new-object net.webclient).DownloadFile('http://gnuwin32.sourceforge.net/downlinks/tar-bin-zip.php', 'C:\tar-bin.zip')
+  - ps: new-item -itemtype directory -force -path C:\tar\bin
+  - 7z x C:\tar-bin.zip -oC:\tar\bin *.exe -r
+  - SET PATH=C:\tar\bin;C:\MinGW\bin;C:\Ruby%ruby_version%\bin;%PATH%
   - echo %PATH%
   - ruby --version
   - gem --version
