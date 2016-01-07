@@ -9,7 +9,7 @@ file 'test-kitchen.pem' => 'test-kitchen.pem.erb' do |task|
   chmod(0700, task.name)
 end
 
-EXAMPLES = FileList['examples/*/*']
+EXAMPLES = FileList['examples/ec2/*']
 EXAMPLES.each do |example|
   project_config = File.join(example, '.kitchen.yml')
   config = Kitchen::Config.new(

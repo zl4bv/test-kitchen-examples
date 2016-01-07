@@ -1,0 +1,7 @@
+source 'https://supermarket.chef.io'
+
+metadata
+
+group :integration do
+  cookbook 'app_test', path: 'test/fixtures/cookbooks/app_test'
+end

@@ -1,0 +1,22 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cpus: 2
+    memory: 4096
+  
+provisioner:
+  name: chef_zero
+  
+platforms:
+  - name: windows-2012r2
+    driver:
+      box: opentable/win-2012r2-standard-amd64-nocm
+    provisioner:
+      require_chef_omnibus: latest
+
+suites:
+  - name: default
+    run_list:
+      - recipe[iis]
+      - recipe[my_test]
